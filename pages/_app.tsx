@@ -7,6 +7,7 @@ export default function MyApp({ Component, pageProps }: any) {
     <AppStateProvider>
       <Head>
         <link rel="icon" href="/icon.svg" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <Component {...pageProps} />
     </AppStateProvider>
