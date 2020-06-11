@@ -76,6 +76,11 @@ const eventHandler = createEventHandler((builder) =>
       if (block) {
         block.text = payload.text
       }
+      // TODO: a black may move parent, may not have matching id as idea
+      // we must maintain an index from block->idea
+      if (state.ideas[payload.blockId]) {
+        state.ideas[payload.blockId].updatedAt = event.time
+      }
     }),
 )
 
