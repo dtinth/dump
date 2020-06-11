@@ -80,7 +80,10 @@ const getSettings = once(() => {
       } else {
         writeSyncLog('Synchronization commenced')
         const sync = getDB()
-          .sync(url)
+          .sync(url, {
+            live: true,
+            retry: true,
+          })
           .on('change', function (info) {
             const { change } = info
             writeSyncLog(
