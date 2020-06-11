@@ -13,4 +13,5 @@ jobs:
           persist-credentials: false
       - name: Build
         run: |
+          yarn
           yarn build
