@@ -68,6 +68,9 @@ const getSettings = once(() => {
   reaction(
     () => settings.url,
     (url, reaction) => {
+      if (url !== localStorage['dtinth-dump:syncUrl']) {
+        localStorage['dtinth-dump:syncUrl'] = url
+      }
       if (currentSync) {
         currentSync.dispose()
         currentSync = undefined
