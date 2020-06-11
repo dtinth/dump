@@ -1,11 +1,29 @@
 import PouchDB from 'pouchdb'
 import { generateId } from './DataModel'
 
-export type EventObject = {
+export type EventObject<K extends AnyEventType = AnyEventType> = {
   _id: string
-  type: string
+  type: K
   time: string
-  payload: any
+  payload: EventTypes[K]['payload']
+}
+
+export type AnyEventType = keyof EventTypes
+
+export type EventTypes = {
+  'new idea': {
+    payload: {
+      ideaId: string
+      parentIdeaId?: string
+      text: string
+    }
+  }
+  'edit block text': {
+    payload: {
+      blockId: string
+      text: string
+    }
+  }
 }
 
 let db: PouchDB.Database<EventObject>
@@ -18,9 +36,9 @@ export function getDB() {
   return db
 }
 
-export async function saveEvent(
-  type: EventObject['type'],
-  payload: EventObject['payload'],
+export async function saveEvent<K extends keyof EventTypes>(
+  type: K,
+  payload: EventTypes[K]['payload'],
 ) {
   const result = await getDB().put({
     _id: generateId(),

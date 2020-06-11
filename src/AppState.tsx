@@ -1,4 +1,4 @@
-import { getDB, EventObject } from './DataStore'
+import { getDB, EventObject, AnyEventType } from './DataStore'
 import produce from 'immer'
 import { useEffect } from 'react'
 import { observable } from 'mobx'
@@ -27,6 +27,58 @@ const initialState: AppState = {
 
 const appState = observable.box(initialState, { deep: false })
 
+type EventHandlerBuilder<R extends AnyEventType = AnyEventType> = {
+  handle<K extends R>(
+    type: K,
+    handler: (state: AppState, event: EventObject<K>) => void,
+  ): EventHandlerBuilder<Exclude<R, K>>
+}
+
+type EventHandler = (state: AppState, event: EventObject) => void
+
+const createEventHandler = (
+  builderCallback: (builder: EventHandlerBuilder) => EventHandlerBuilder<never>,
+): EventHandler => {
+  const map = new Map<AnyEventType, EventHandler>()
+  const builder: EventHandlerBuilder = {
+    handle: (type, handler) => {
+      map.set(type, handler as any)
+      return builder
+    },
+  }
+  builderCallback(builder)
+  return (state, event) => {
+    const foundHandler = map.get(event.type)
+    if (foundHandler) {
+      foundHandler(state, event)
+    }
+  }
+}
+
+const eventHandler = createEventHandler((builder) =>
+  builder
+    .handle('new idea', (state, event) => {
+      const { payload } = event
+      const ideaId = payload.ideaId
+      state.ideas[ideaId] = {
+        ideaId: ideaId,
+        blocks: [ideaId],
+        updatedAt: event.time,
+        parentIdeaIds: payload.parentIdeaId ? [payload.parentIdeaId] : [],
+      }
+      state.blocks[ideaId] = {
+        text: payload.text,
+      }
+    })
+    .handle('edit block text', (state, event) => {
+      const { payload } = event
+      const block = state.blocks[payload.blockId]
+      if (block) {
+        block.text = payload.text
+      }
+    }),
+)
+
 const appStateManager = (() => {
   const eventMap = new Map<string, EventObject>()
   return {
@@ -42,27 +94,8 @@ const appStateManager = (() => {
       let state = initialState
       for (const key of Array.from(eventMap.keys()).sort()) {
         const event = eventMap.get(key)!
-        const { payload } = event
         state = produce(state, (state) => {
-          if (event.type === 'new idea') {
-            const ideaId = payload.ideaId
-            state.ideas[ideaId] = {
-              ideaId: ideaId,
-              blocks: [ideaId],
-              updatedAt: event.time,
-              parentIdeaIds: payload.parentIdeaId ? [payload.parentIdeaId] : [],
-            }
-            state.blocks[ideaId] = {
-              text: payload.text,
-            }
-            return
-          }
-          if (event.type === 'edit block text') {
-            const block = state.blocks[payload.blockId]
-            if (block) {
-              block.text = payload.text
-            }
-          }
+          eventHandler(state, event)
         })
       }
       return state
