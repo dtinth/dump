@@ -28,6 +28,14 @@ export function BlockEditor(props: {
         defaultValue={props.defaultValue}
         rows={8}
       />
+      <p className="text-right">
+        <button
+          className="border border-#d7fc70 bg-#d7fc70 text-#090807 font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Save
+        </button>
+      </p>
     </form>
   )
 }
