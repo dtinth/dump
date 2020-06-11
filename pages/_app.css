@@ -4,5 +4,10 @@
 @import '~tailwindtinth/dist/tailwindtinth-markdown.css';
 
 body {
-  @apply bg-#353433 text-#e9e8e7 p-12;
+  @apply bg-#353433 text-#e9e8e7 p-4;
+}
+@media (min-width: 720px) {
+  body {
+    @apply p-12;
+  }
 }
