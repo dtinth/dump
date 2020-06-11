@@ -10,7 +10,7 @@ export function IdeaPage(props: { id: string }) {
       <Head>
         <title>dump</title>
       </Head>
-      <div className="max-w-xl">
+      <div className="max-w-2xl">
         {id && (
           <>
             <ClientSideGuard>

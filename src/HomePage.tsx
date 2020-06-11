@@ -5,7 +5,7 @@ import { IdeaBlockLink } from './IdeaBlockLink'
 
 export function HomePage() {
   return (
-    <div className="max-w-xl">
+    <div className="max-w-2xl">
       <h1 className="text-#8b8685 font-bold">Ideas</h1>
 
       <NewIdeaForm />
