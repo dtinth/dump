@@ -1,9 +1,10 @@
 import { generateId } from './DataModel'
 import { saveEvent } from './DataStore'
-import Router from 'next/router'
 import { BlockEditor } from './BlockEditor'
+import { useHistory } from 'react-router-dom'
 
 export function NewIdeaForm(props: { parentIdeaId?: string }) {
+  const history = useHistory()
   const submit = async (text: string) => {
     const id = generateId()
     await saveEvent('new idea', {
@@ -11,7 +12,7 @@ export function NewIdeaForm(props: { parentIdeaId?: string }) {
       parentIdeaId: props.parentIdeaId,
       text: text,
     })
-    Router.push('/idea?id=' + id)
+    history.push('/idea/' + id)
   }
   return <BlockEditor defaultValue="" onSubmit={submit} />
 }
