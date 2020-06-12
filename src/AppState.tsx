@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { useEffect, useContext } from 'react'
+import { useEffect } from 'react'
 import { observable } from 'mobx'
 import { useObserver } from 'mobx-react'
 import { AnyEventType, EventObject } from './DataModel'
@@ -137,7 +137,7 @@ export function AppStateProvider(props: { children: React.ReactNode }) {
         if (change.deleted) return
         appState.set(appStateManager.getNextState([change.doc!]))
       })
-      .on('error', function (err) {
+      .on('error', function () {
         alert('error')
       })
     loadDocs()
