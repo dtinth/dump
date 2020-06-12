@@ -1,4 +1,4 @@
-import { IdeaCard } from './IdeaUI'
+import { IdeaCard } from './IdeaCard'
 import { useIdea, useLinkedIdeas, useBreadcrumb } from './AppState'
 import { NewIdeaForm } from './NewIdeaForm'
 import { Link } from 'react-router-dom'
