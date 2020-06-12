@@ -21,17 +21,7 @@ type ReplicationState = {
   logs: string
 }
 
-const DataStoreContext = createContext<DataStoreContextType>({
-  getDB: () => {
-    throw new Error('No DataStoreContext provided')
-  },
-  saveEvent: () => {
-    throw new Error('No DataStoreContext provided')
-  },
-  useReplicationState: () => {
-    throw new Error('No DataStoreContext provided')
-  },
-})
+const DataStoreContext = createContext<DataStoreContextType | null>(null)
 
 function initializeContext(): DataStoreContextType {
   const db: Database = new PouchDB('dump-events')
@@ -159,5 +149,7 @@ export function SynchronizationSettingsConnector(props: {
 }
 
 export function useDataStoreContext() {
-  return useContext(DataStoreContext)
+  const context = useContext(DataStoreContext)
+  if (!context) throw new Error('No DataStoreContext provided')
+  return context
 }
