@@ -1,8 +1,9 @@
-import { getDB, EventObject, AnyEventType } from './DataStore'
+import { getDB } from './DataStore'
 import produce from 'immer'
 import { useEffect } from 'react'
 import { observable } from 'mobx'
 import { useObserver } from 'mobx-react'
+import { AnyEventType, EventObject } from './DataModel'
 
 export type Idea = {
   ideaId: string

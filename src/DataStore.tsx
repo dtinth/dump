@@ -1,34 +1,9 @@
 import PouchDB from 'pouchdb'
-import { generateId } from './DataModel'
+import { generateId, EventObject, EventTypes } from './DataModel'
 import { ReactNode } from 'react'
 import once from 'lodash.once'
 import { observable, reaction } from 'mobx'
 import { useObserver } from 'mobx-react'
-
-export type EventObject<K extends AnyEventType = AnyEventType> = {
-  _id: string
-  type: K
-  time: string
-  payload: EventTypes[K]['payload']
-}
-
-export type AnyEventType = keyof EventTypes
-
-export type EventTypes = {
-  'new idea': {
-    payload: {
-      ideaId: string
-      parentIdeaId?: string
-      text: string
-    }
-  }
-  'edit block text': {
-    payload: {
-      blockId: string
-      text: string
-    }
-  }
-}
 
 let db: PouchDB.Database<EventObject>
 
