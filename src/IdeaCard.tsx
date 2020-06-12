@@ -70,11 +70,26 @@ function BlockView(props: { blockId: string }) {
               textareaRef={textareaRef}
             />
           </DisclosureContent>
-          <ReactMarkdown source={block.text} />
+          <ReactMarkdown
+            source={block.text}
+            renderers={{ code: LazyCodeBlock }}
+          />
         </>
       ) : (
         `No block found: ${id}`
       )}
     </section>
+  )
+}
+
+const CodeBlock = React.lazy(() => import('./CodeBlock'))
+
+function LazyCodeBlock(
+  props: React.ComponentPropsWithoutRef<typeof CodeBlock>,
+) {
+  return (
+    <React.Suspense fallback={<pre>{props.value}</pre>}>
+      <CodeBlock {...props} />
+    </React.Suspense>
   )
 }
