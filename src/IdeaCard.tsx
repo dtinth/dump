@@ -6,6 +6,7 @@ import Octicon, { Pencil } from '@primer/octicons-react'
 import { BlockEditor } from './BlockEditor'
 import { Link } from 'react-router-dom'
 import { useDataStoreContext } from './DataStore'
+import React from 'react'
 
 export function IdeaCard(props: { idea: Idea }) {
   return (
