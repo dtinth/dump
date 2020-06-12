@@ -1,9 +1,9 @@
-import { getDB } from './DataStore'
 import produce from 'immer'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { observable } from 'mobx'
 import { useObserver } from 'mobx-react'
 import { AnyEventType, EventObject } from './DataModel'
+import { useDataStoreContext } from './DataStore'
 
 export type Idea = {
   ideaId: string
@@ -110,6 +110,7 @@ const appStateManager = (() => {
 })()
 
 export function AppStateProvider(props: { children: React.ReactNode }) {
+  const { getDB } = useDataStoreContext()
   useEffect(() => {
     Object.assign(window, {
       DUMP: {

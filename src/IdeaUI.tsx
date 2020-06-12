@@ -2,10 +2,10 @@ import { Idea, useBlock } from './AppState'
 import ReactMarkdown from 'react-markdown'
 import { useDisclosureState, Disclosure, DisclosureContent } from 'reakit'
 import { useRef, useCallback, useEffect } from 'react'
-import { saveEvent } from './DataStore'
 import Octicon, { Pencil } from '@primer/octicons-react'
 import { BlockEditor } from './BlockEditor'
 import { Link } from 'react-router-dom'
+import { useDataStoreContext } from './DataStore'
 
 export function IdeaCard(props: { idea: Idea }) {
   return (
@@ -26,6 +26,7 @@ export function IdeaCard(props: { idea: Idea }) {
 }
 
 function BlockView(props: { blockId: string }) {
+  const { saveEvent } = useDataStoreContext()
   const id = props.blockId
   const block = useBlock(id)
   const edit = useDisclosureState()
