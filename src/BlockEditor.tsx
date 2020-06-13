@@ -17,6 +17,11 @@ export function BlockEditor(props: {
   const submit = useCallback(() => {
     return props.onSubmit(textareaRef.current!.value)
   }, [])
+  const writeText = useCallback((text: string) => {
+    const textarea = textareaRef.current!
+    textarea.focus()
+    document.execCommand('insertText', false, text)
+  }, [])
   return (
     <form
       onSubmit={(e) => {
@@ -37,14 +42,8 @@ export function BlockEditor(props: {
         rows={8}
       />
       <div className="flex">
-        <p className="mr-auto">
-          <QRCodeReaderButton
-            onResult={(data) => {
-              const textarea = textareaRef.current!
-              textarea.focus()
-              document.execCommand('insertText', false, `\n${data}\n`)
-            }}
-          />
+        <p className="mr-auto space-x-1">
+          <QRCodeReaderButton onResult={(data) => writeText(`\n${data}\n`)} />
         </p>
         <p className="text-right">
           <button
