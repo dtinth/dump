@@ -1,12 +1,4 @@
-import {
-  useRef,
-  useCallback,
-  ReactNode,
-  Suspense,
-  useState,
-  useEffect,
-  lazy,
-} from 'react'
+import { useRef, useCallback, Suspense, useState, useEffect, lazy } from 'react'
 import composeRefs from '@seznam/compose-react-refs'
 import {
   useDialogState,
@@ -14,7 +6,6 @@ import {
   DialogDisclosure,
   DialogBackdrop,
 } from 'reakit/Dialog'
-import { Button } from 'reakit/Button'
 import { Result } from '@zxing/library'
 
 export function BlockEditor(props: {
@@ -49,7 +40,9 @@ export function BlockEditor(props: {
         <p className="mr-auto">
           <QRCodeReaderButton
             onResult={(data) => {
-              textareaRef.current!.value += '\n\n' + data
+              const textarea = textareaRef.current!
+              textarea.focus()
+              document.execCommand('insertText', false, `\n${data}\n`)
             }}
           />
         </p>
