@@ -2,7 +2,7 @@ const withOffline = require('next-offline')
 
 const nextConfig = {
   workboxOpts: {
-    importScripts: '/dump.service-worker.js',
+    importScripts: ['/dump.service-worker.js'],
   },
 }
 
