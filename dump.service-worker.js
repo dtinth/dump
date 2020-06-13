@@ -2,11 +2,6 @@ console.log('dump service worker is here!')
 
 importScripts('https://unpkg.com/dexie@2.0.4/dist/dexie.js')
 
-const {
-  routing: { registerRoute, setDefaultHandler },
-  strategies: { NetworkFirst },
-} = workbox
-
 const db = new Dexie('dtinth-dump-shared-blobs')
 db.version(1).stores({ blobs: '++id' })
 
@@ -29,5 +24,3 @@ registerRoute(
   },
   'POST',
 )
-
-setDefaultHandler(new NetworkFirst())
