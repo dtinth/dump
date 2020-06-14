@@ -1,9 +1,8 @@
-import { Suspense, useEffect, useState, useCallback, useRef } from 'react'
-import { useRecentIdeasIds, useIdeaTextMap } from './AppState'
+import { Suspense, useCallback, useRef } from 'react'
+import { useRecentIdeasIds } from './AppState'
 import { NewIdeaForm } from './NewIdeaForm'
 import { IdeaBlockLink } from './IdeaBlockLink'
-import { observable, autorun } from 'mobx'
-import { useObserver } from 'mobx-react'
+import { useSearchEngine } from './SearchEngine'
 
 export function HomePage() {
   const search = useSearchEngine()
@@ -48,55 +47,4 @@ function RecentIdeas(props: { searchResults?: string[] }) {
       })}
     </div>
   )
-}
-
-function useSearchEngine() {
-  const ideas = useIdeaTextMap()
-  type SearchableEntry = { id: string; text: string }
-  const [store] = useState(() => {
-    return observable.object(
-      {
-        data: [] as SearchableEntry[],
-        searchEngine: null as import('./SearchEngine').MiniSearch | null,
-        searchText: '',
-        get results() {
-          if (!store.searchText || !store.searchEngine) return undefined
-          const searchResults = store.searchEngine.search(store.searchText)
-          return Array.from(new Set(searchResults.map((item) => item.id)))
-        },
-      },
-      undefined,
-      { deep: false },
-    )
-  })
-  useEffect(() => {
-    store.data = Object.keys(ideas).map((id) => ({ id, text: ideas[id] }))
-  }, [ideas])
-  useEffect(() => {
-    ;(async () => {
-      const { MiniSearch, stemmer } = await import('./SearchEngine')
-      const searchEngine = new MiniSearch({
-        idField: 'id',
-        tokenize: (string, _fieldName) => string.match(/\w+/g) || [],
-        processTerm: (term, _fieldName) => stemmer(term),
-        fields: ['text'],
-        searchOptions: {
-          prefix: true,
-        },
-      })
-      autorun(() => {
-        searchEngine.addAll(store.data)
-      })
-      store.searchEngine = searchEngine
-    })()
-  }, [])
-  const setText = useCallback((text: string) => {
-    store.searchText = text
-  }, [])
-  return useObserver(() => {
-    return {
-      results: store.results,
-      setText,
-    }
-  })
 }
