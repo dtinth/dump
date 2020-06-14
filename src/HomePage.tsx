@@ -1,21 +1,20 @@
-import { Suspense, useCallback, useRef } from 'react'
+import { Suspense, useCallback, useRef, useState } from 'react'
 import { useRecentIdeasIds } from './AppState'
 import { NewIdeaForm } from './NewIdeaForm'
 import { IdeaBlockLink } from './IdeaBlockLink'
-import { useSearchEngine } from './SearchEngine'
+import { useSearchResults } from './SearchEngine'
 
 export function HomePage() {
-  const search = useSearchEngine()
+  const [searchText, setSearchText] = useState('')
+  const searchResults = useSearchResults(searchText)
   const onIdle = useOnIdle()
   return (
     <div className="max-w-2xl">
       <h1 className="text-#8b8685 font-bold">Ideas</h1>
 
-      <NewIdeaForm
-        onTextChange={(text) => onIdle(() => search.setText(text))}
-      />
+      <NewIdeaForm onTextChange={(text) => onIdle(() => setSearchText(text))} />
       <Suspense fallback={'Loading...'}>
-        <RecentIdeas searchResults={search.results} />
+        <RecentIdeas searchResults={searchResults} />
       </Suspense>
     </div>
   )

@@ -33,6 +33,7 @@
     "react-syntax-highlighter": "^12.2.1",
     "reakit": "^1.0.4",
     "stemmer": "^1.0.5",
+    "stopwords": "^0.0.9",
     "swr": "^0.2.2",
     "tailwindcss": "^1.4.6",
     "tailwindtinth": "^2.1.0",

@@ -6,6 +6,7 @@ import { IdeaPage } from '../src/IdeaPage'
 import { SettingsPage } from '../src/SettingsPage'
 import { DataStoreContextProvider } from '../src/DataStore'
 import { AppStateProvider } from '../src/AppState'
+import { SearchEngineContextProvider } from '../src/SearchEngine'
 
 export default function DumpApplication() {
   return (
@@ -16,19 +17,27 @@ export default function DumpApplication() {
       <ClientSideGuard>
         <DataStoreContextProvider>
           <AppStateProvider>
-            <Router>
-              <Switch>
-                <Route exact path="/" render={() => <HomePage />} />
-                <Route exact path="/settings" render={() => <SettingsPage />} />
-                <Route
-                  path="/idea/:id"
-                  render={({ match }) => <IdeaPage id={match.params.id} />}
-                />
-              </Switch>
-            </Router>
+            <SearchEngineContextProvider>
+              <AppRouter />
+            </SearchEngineContextProvider>
           </AppStateProvider>
         </DataStoreContextProvider>
       </ClientSideGuard>
     </div>
+  )
+}
+
+function AppRouter() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" render={() => <HomePage />} />
+        <Route exact path="/settings" render={() => <SettingsPage />} />
+        <Route
+          path="/idea/:id"
+          render={({ match }) => <IdeaPage id={match.params.id} />}
+        />
+      </Switch>
+    </Router>
   )
 }

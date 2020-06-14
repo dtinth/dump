@@ -187,6 +187,9 @@ export function useIdeaTextMap() {
     return output
   })
 }
+export function useIdeaText(id: string) {
+  return useIdeaTextMap()[id]
+}
 
 export function useIdeaTitle(id: string) {
   return useObserver(() => {

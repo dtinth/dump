@@ -7033,6 +7033,11 @@ stemmer@^1.0.5:
   resolved "https://registry.yarnpkg.com/stemmer/-/stemmer-1.0.5.tgz#fd89beaf8bff5d04b6643bfffcaed0fc420deec0"
   integrity sha512-SLq7annzSKRDStasOJJoftCSCzBCKmBmH38jC4fDtCunAqOzpTpIm9zmaHmwNJiZ8gLe9qpVdBVbEG2DC5dE2A==
 
+stopwords@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/stopwords/-/stopwords-0.0.9.tgz#d2ceb30c778b3b12896d476a0ca5e9946141b5e3"
+  integrity sha512-2OF7/9f5buXrBB8De5ZAC9+g5nIw9SRx9ZsL3Qpz6znSfPEihOmaMnwJxXehynZ9AfRNroHIKEIcsEmRywVXVQ==
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
