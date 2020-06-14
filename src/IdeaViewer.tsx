@@ -19,7 +19,10 @@ export function IdeaViewer(props: { ideaId: string }) {
         <IdeaCard idea={idea} />
       </div>
       <h1 className="text-#8b8685 font-bold mt-8">Linked ideas</h1>
-      <NewIdeaForm parentIdeaId={String(props.ideaId)} />
+      <NewIdeaForm
+        draftId={`IdeaViewer-${props.ideaId}`}
+        parentIdeaId={String(props.ideaId)}
+      />
       <LinkedIdeas parentIdeaId={String(props.ideaId)} />
     </>
   )

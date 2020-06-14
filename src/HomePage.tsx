@@ -12,7 +12,10 @@ export function HomePage() {
     <div className="max-w-2xl">
       <h1 className="text-#8b8685 font-bold">Ideas</h1>
 
-      <NewIdeaForm onTextChange={(text) => onIdle(() => setSearchText(text))} />
+      <NewIdeaForm
+        draftId="HomePage"
+        onTextChange={(text) => onIdle(() => setSearchText(text))}
+      />
       <Suspense fallback={'Loading...'}>
         <RecentIdeas searchResults={searchResults} />
       </Suspense>
