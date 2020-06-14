@@ -113,7 +113,9 @@ function QRCodeReaderButton(props: { onResult: (data: Result) => void }) {
 }
 
 const QRCodeReader = lazy(async () => {
-  const { BrowserQRCodeReader } = await import('@zxing/library')
+  const { BrowserQRCodeReader } = await import(
+    /* webpackChunkName: "zxing" */ '@zxing/library'
+  )
   function QRCodeReaderView(props: { onResult: (data: Result) => void }) {
     const ref = useRef<HTMLVideoElement>(null)
     const [codeReader] = useState(() => new BrowserQRCodeReader())

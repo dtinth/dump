@@ -83,7 +83,9 @@ function BlockView(props: { blockId: string }) {
   )
 }
 
-const CodeBlock = React.lazy(() => import('./CodeBlock'))
+const CodeBlock = React.lazy(() =>
+  import(/* webpackChunkName: "CodeBlock" */ './CodeBlock'),
+)
 
 function LazyCodeBlock(
   props: React.ComponentPropsWithoutRef<typeof CodeBlock>,

@@ -29,7 +29,7 @@ function initializeSearchEngineContext() {
   return {
     async mounted() {
       const { MiniSearch, stemmer, englishStopwords } = await import(
-        './SearchEngineBundle'
+        /* webpackChunkName: "SearchEngineBundle" */ './SearchEngineBundle'
       )
       const searchEngine = new MiniSearch({
         idField: 'id',
