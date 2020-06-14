@@ -4278,21 +4278,6 @@ self.addEventListener('message', event => {
  */
 
 precacheAndRoute([{
-  "url": "_next/static/6ngfzhAwJKX4VZIz5-eFC/_buildManifest.js",
-  "revision": "dc271d5bb4f4068948a81e386e7febb7"
-}, {
-  "url": "_next/static/6ngfzhAwJKX4VZIz5-eFC/_ssgManifest.js",
-  "revision": "abee47769bf307639ace4945f9cfd4ff"
-}, {
-  "url": "_next/static/6ngfzhAwJKX4VZIz5-eFC/pages/_app.js",
-  "revision": "4571f84e8d7ff4b95e0d6a3c341dbeba"
-}, {
-  "url": "_next/static/6ngfzhAwJKX4VZIz5-eFC/pages/_error.js",
-  "revision": "3f6b18a4793a71aeae4caff67a335644"
-}, {
-  "url": "_next/static/6ngfzhAwJKX4VZIz5-eFC/pages/index.js",
-  "revision": "a5fefa6f2dffb012a802cfbd57b53e2c"
-}, {
   "url": "_next/static/chunks/12.0101c0016a46aa856e06.js",
   "revision": "5cdfab1dc29e4275bdd187bd9b38dac6"
 }, {
@@ -4308,7 +4293,7 @@ precacheAndRoute([{
   "url": "_next/static/chunks/8313d723.9b15a144d8177e64a158.js",
   "revision": "3dca7ac2216580fd183a02f5424ee461"
 }, {
-  "url": "_next/static/chunks/b133778495209802f63a1edb8fd51d934e3304da.8bc66de866e69a0271a0.js",
+  "url": "_next/static/chunks/a480ec73edeabdc25b0d76e77a3802739d900cf1.8bc66de866e69a0271a0.js",
   "revision": "18111e116f1d09c249794c600a6773ff"
 }, {
   "url": "_next/static/chunks/commons.0527e01055b6c8e330a2.js",
@@ -4317,11 +4302,50 @@ precacheAndRoute([{
   "url": "_next/static/chunks/framework.619a4f70c1d4d3a29cbc.js",
   "revision": "8e6204793e3d11a8bedf359bfb6e110d"
 }, {
-  "url": "_next/static/css/22096e5eb407556ce323.css",
-  "revision": "bfba50b7383624e096b8540834875387"
-}, {
   "url": "_next/static/css/73a6731530f3de809ee0.css",
   "revision": "c99afc1a3a689f90088738c9b15ed475"
+}, {
+  "url": "_next/static/css/d85deb32d9bc9192a60e.css",
+  "revision": "989a85f11cfbf2dde5604208f5008817"
+}, {
+  "url": "_next/static/i9VmB5fR7JrHTBKB4cd1x/_buildManifest.js",
+  "revision": "dc271d5bb4f4068948a81e386e7febb7"
+}, {
+  "url": "_next/static/i9VmB5fR7JrHTBKB4cd1x/_ssgManifest.js",
+  "revision": "abee47769bf307639ace4945f9cfd4ff"
+}, {
+  "url": "_next/static/i9VmB5fR7JrHTBKB4cd1x/pages/_app.js",
+  "revision": "726ecc49bdbf56e780a2deb88dd47760"
+}, {
+  "url": "_next/static/i9VmB5fR7JrHTBKB4cd1x/pages/_error.js",
+  "revision": "3f6b18a4793a71aeae4caff67a335644"
+}, {
+  "url": "_next/static/i9VmB5fR7JrHTBKB4cd1x/pages/index.js",
+  "revision": "a5fefa6f2dffb012a802cfbd57b53e2c"
+}, {
+  "url": "_next/static/media/arimo-latin-400.af75ce5c45f27d62818f61518aa35fca.woff",
+  "revision": "6d15a1bb418e9f34d0606fd2d568b429"
+}, {
+  "url": "_next/static/media/arimo-latin-400.b3641e05ec26cef6ad0f315d2ffd039c.woff2",
+  "revision": "01337cbf8cb58f21e1411c4c9ae23c87"
+}, {
+  "url": "_next/static/media/arimo-latin-400italic.45a808d4a912c648d8e2073bc8cb1bd1.woff2",
+  "revision": "cc7569b29c944be9246be8c439ff9da4"
+}, {
+  "url": "_next/static/media/arimo-latin-400italic.955ba3df41974f4860dec39df3c93770.woff",
+  "revision": "422dc78ce039a6a6496e2cbb0ed62eb4"
+}, {
+  "url": "_next/static/media/arimo-latin-700.0392947bda66fad4d39375bfe3caf39a.woff",
+  "revision": "e97a2f2baf901ad2d2c3d7649bffdd22"
+}, {
+  "url": "_next/static/media/arimo-latin-700.372fa204b0c0f5300c30ce570a28cc9a.woff2",
+  "revision": "1383e57eb85ca99948e7ed69efbc1a76"
+}, {
+  "url": "_next/static/media/arimo-latin-700italic.dbb60aadf3704f9a5ce4943e841b285f.woff",
+  "revision": "505d2fd4a9acc32cba0c56d7a96e6ed1"
+}, {
+  "url": "_next/static/media/arimo-latin-700italic.f62b85a0ef70037ab7041eb191b48fe8.woff2",
+  "revision": "2e7c6c6f35ee42fbd1264b169410c9bb"
 }, {
   "url": "_next/static/runtime/main-4ddd64517952f0fd4e12.js",
   "revision": "9d0a0346b74b32c4a3dd00ca3933bc9d"
