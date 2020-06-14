@@ -15,6 +15,7 @@
     "@types/lodash.once": "^4.1.6",
     "@types/pouchdb": "^6.4.0",
     "@zxing/library": "^0.17.0",
+    "dexie": "^3.0.1",
     "immer": "^6.0.9",
     "lodash.once": "^4.1.1",
     "mobx": "^5.15.4",

@@ -1,6 +1,6 @@
 console.log('dump service worker is here!')
 
-importScripts('https://unpkg.com/dexie@2.0.4/dist/dexie.js')
+importScripts('https://cdn.jsdelivr.net/npm/dexie@3.0.1/dist/dexie.min.js')
 
 const db = new Dexie('dtinth-dump-shared-blobs')
 db.version(1).stores({ blobs: '++id' })
