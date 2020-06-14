@@ -14,7 +14,6 @@ export default function MyApp({ Component, pageProps }: any) {
           sizes="2048x2732"
           href="/apple-launch-image.png"
         />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <Component {...pageProps} />
     </>
