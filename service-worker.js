@@ -4278,32 +4278,20 @@ self.addEventListener('message', event => {
  */
 
 precacheAndRoute([{
-  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/_buildManifest.js",
+  "url": "_next/static/GWEpk3htuIbs5boemtvcS/_buildManifest.js",
   "revision": "a40bc01143db3065c98c04cac64c217e"
 }, {
-  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/_ssgManifest.js",
+  "url": "_next/static/GWEpk3htuIbs5boemtvcS/_ssgManifest.js",
   "revision": "abee47769bf307639ace4945f9cfd4ff"
 }, {
-  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/_app.js",
-  "revision": "726ecc49bdbf56e780a2deb88dd47760"
+  "url": "_next/static/GWEpk3htuIbs5boemtvcS/pages/_app.js",
+  "revision": "43b99fcf6bf0badbf7876db3e0a36b14"
 }, {
-  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/_error.js",
-  "revision": "3f6b18a4793a71aeae4caff67a335644"
+  "url": "_next/static/GWEpk3htuIbs5boemtvcS/pages/_error.js",
+  "revision": "16d1ff4999a910aaa9939e45447b43e6"
 }, {
-  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/index.js",
-  "revision": "239b8f4adcd31aae19ad6b43488638ee"
-}, {
-  "url": "_next/static/chunks/12.0101c0016a46aa856e06.js",
-  "revision": "5cdfab1dc29e4275bdd187bd9b38dac6"
-}, {
-  "url": "_next/static/chunks/13.d9efed9345990a0c63df.js",
-  "revision": "9dadbb4a67418977b4143da11b4d5d49"
-}, {
-  "url": "_next/static/chunks/14.48b25bd053e5a10c2391.js",
-  "revision": "75efb40028b2882c3e7ac748aad62b77"
-}, {
-  "url": "_next/static/chunks/2095532034ecc4652f4625b5481552292685bf72.8bc66de866e69a0271a0.js",
-  "revision": "18111e116f1d09c249794c600a6773ff"
+  "url": "_next/static/GWEpk3htuIbs5boemtvcS/pages/index.js",
+  "revision": "312e0ed4c6d8bc5c54874d7aa5209d36"
 }, {
   "url": "_next/static/chunks/545d2f42.0c14e70fda9d7c007b49.js",
   "revision": "06dcad42ee3f4c544f4e8fa904af5093"
@@ -4314,11 +4302,23 @@ precacheAndRoute([{
   "url": "_next/static/chunks/8313d723.644c5d102a7f74f5e569.js",
   "revision": "c94435ce777acd6f358fa35bbb298632"
 }, {
+  "url": "_next/static/chunks/911848d2118d0ab9693b86ed3cea878d046d6c75.8bc66de866e69a0271a0.js",
+  "revision": "18111e116f1d09c249794c600a6773ff"
+}, {
+  "url": "_next/static/chunks/CodeBlock.191ce451c4d13f2b05f2.js",
+  "revision": "f0d605973a236c2ee5def7dd4c6e4d12"
+}, {
+  "url": "_next/static/chunks/SearchEngineBundle.813b39c03f0b45657967.js",
+  "revision": "c0d483b9680d5a6fc440596599c077a8"
+}, {
   "url": "_next/static/chunks/commons.0527e01055b6c8e330a2.js",
   "revision": "69f7f75c6bb2e510eb685a17f89356a0"
 }, {
   "url": "_next/static/chunks/framework.619a4f70c1d4d3a29cbc.js",
   "revision": "8e6204793e3d11a8bedf359bfb6e110d"
+}, {
+  "url": "_next/static/chunks/zxing.2358f8d2dcd5b9e06c5c.js",
+  "revision": "197ca7ffba804c89f081af15122df03b"
 }, {
   "url": "_next/static/css/73a6731530f3de809ee0.css",
   "revision": "c99afc1a3a689f90088738c9b15ed475"
@@ -4350,14 +4350,14 @@ precacheAndRoute([{
   "url": "_next/static/media/arimo-latin-700italic.f62b85a0ef70037ab7041eb191b48fe8.woff2",
   "revision": "2e7c6c6f35ee42fbd1264b169410c9bb"
 }, {
-  "url": "_next/static/runtime/main-4ddd64517952f0fd4e12.js",
-  "revision": "9d0a0346b74b32c4a3dd00ca3933bc9d"
+  "url": "_next/static/runtime/main-bae34f28511580119f1c.js",
+  "revision": "c57704e21bfe188d5c9f19fe90031258"
 }, {
-  "url": "_next/static/runtime/polyfills-788a592a52ba46c11fcc.js",
-  "revision": "e27c282e92a99c6c95d0ce8b16d7b458"
+  "url": "_next/static/runtime/polyfills-f1eec38e83a82f41790c.js",
+  "revision": "1be338a2036e791c031155fc6c2d6b59"
 }, {
-  "url": "_next/static/runtime/webpack-7a23aac6807a756f792d.js",
-  "revision": "2ec9a0a50e73c25249fdbe5e6d7a892e"
+  "url": "_next/static/runtime/webpack-cef3fef30f940d7b5b38.js",
+  "revision": "6026e037654e737d397f05a111e473ea"
 }], {});
 registerRoute(/^https?.*/, new NetworkFirst({
   "cacheName": "offlineCache",
