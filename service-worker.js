@@ -4278,20 +4278,20 @@ self.addEventListener('message', event => {
  */
 
 precacheAndRoute([{
-  "url": "_next/static/KCUxfsUdPw7sLqt9c8L9I/_buildManifest.js",
-  "revision": "dc271d5bb4f4068948a81e386e7febb7"
+  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/_buildManifest.js",
+  "revision": "a40bc01143db3065c98c04cac64c217e"
 }, {
-  "url": "_next/static/KCUxfsUdPw7sLqt9c8L9I/_ssgManifest.js",
+  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/_ssgManifest.js",
   "revision": "abee47769bf307639ace4945f9cfd4ff"
 }, {
-  "url": "_next/static/KCUxfsUdPw7sLqt9c8L9I/pages/_app.js",
+  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/_app.js",
   "revision": "726ecc49bdbf56e780a2deb88dd47760"
 }, {
-  "url": "_next/static/KCUxfsUdPw7sLqt9c8L9I/pages/_error.js",
+  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/_error.js",
   "revision": "3f6b18a4793a71aeae4caff67a335644"
 }, {
-  "url": "_next/static/KCUxfsUdPw7sLqt9c8L9I/pages/index.js",
-  "revision": "a5fefa6f2dffb012a802cfbd57b53e2c"
+  "url": "_next/static/YzDs2BWk6NpyocsuGwT-V/pages/index.js",
+  "revision": "239b8f4adcd31aae19ad6b43488638ee"
 }, {
   "url": "_next/static/chunks/12.0101c0016a46aa856e06.js",
   "revision": "5cdfab1dc29e4275bdd187bd9b38dac6"
@@ -4299,17 +4299,20 @@ precacheAndRoute([{
   "url": "_next/static/chunks/13.d9efed9345990a0c63df.js",
   "revision": "9dadbb4a67418977b4143da11b4d5d49"
 }, {
+  "url": "_next/static/chunks/14.48b25bd053e5a10c2391.js",
+  "revision": "75efb40028b2882c3e7ac748aad62b77"
+}, {
+  "url": "_next/static/chunks/2095532034ecc4652f4625b5481552292685bf72.8bc66de866e69a0271a0.js",
+  "revision": "18111e116f1d09c249794c600a6773ff"
+}, {
   "url": "_next/static/chunks/545d2f42.0c14e70fda9d7c007b49.js",
   "revision": "06dcad42ee3f4c544f4e8fa904af5093"
 }, {
   "url": "_next/static/chunks/59d68578.4c419f4b16a96bca7647.js",
   "revision": "0f76c6f3cca30e5b890b037c53cdecd9"
 }, {
-  "url": "_next/static/chunks/7be76c9eddd9e88fbee1095a2391de9f57e48d19.8bc66de866e69a0271a0.js",
-  "revision": "18111e116f1d09c249794c600a6773ff"
-}, {
-  "url": "_next/static/chunks/8313d723.9b15a144d8177e64a158.js",
-  "revision": "3dca7ac2216580fd183a02f5424ee461"
+  "url": "_next/static/chunks/8313d723.644c5d102a7f74f5e569.js",
+  "revision": "c94435ce777acd6f358fa35bbb298632"
 }, {
   "url": "_next/static/chunks/commons.0527e01055b6c8e330a2.js",
   "revision": "69f7f75c6bb2e510eb685a17f89356a0"
@@ -4353,8 +4356,8 @@ precacheAndRoute([{
   "url": "_next/static/runtime/polyfills-788a592a52ba46c11fcc.js",
   "revision": "e27c282e92a99c6c95d0ce8b16d7b458"
 }, {
-  "url": "_next/static/runtime/webpack-e109d877848348e02f3c.js",
-  "revision": "fd9d2d3945e6ddbeef4acee330c8d1fc"
+  "url": "_next/static/runtime/webpack-7a23aac6807a756f792d.js",
+  "revision": "2ec9a0a50e73c25249fdbe5e6d7a892e"
 }], {});
 registerRoute(/^https?.*/, new NetworkFirst({
   "cacheName": "offlineCache",
