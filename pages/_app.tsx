@@ -1,4 +1,5 @@
 import './_app.css'
+import 'typeface-arimo/index.css'
 import Head from 'next/head'
 
 export default function MyApp({ Component, pageProps }: any) {

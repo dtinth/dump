@@ -32,7 +32,8 @@
     "reakit": "^1.0.4",
     "swr": "^0.2.2",
     "tailwindcss": "^1.4.6",
-    "tailwindtinth": "^2.1.0"
+    "tailwindtinth": "^2.1.0",
+    "typeface-arimo": "^0.0.72"
   },
   "devDependencies": {
     "@types/node": "^14.0.11",
