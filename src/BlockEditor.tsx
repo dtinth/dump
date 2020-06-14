@@ -12,6 +12,7 @@ export function BlockEditor(props: {
   defaultValue: string
   onSubmit: (text: string) => void
   textareaRef?: React.RefObject<HTMLTextAreaElement>
+  onTextChange?: (text: string) => void
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const submit = useCallback(() => {
@@ -33,6 +34,9 @@ export function BlockEditor(props: {
         className="form-textarea bg-#090807 border-#656463 w-full text-#bbeeff"
         ref={composeRefs(textareaRef, props.textareaRef)}
         defaultValue={props.defaultValue}
+        onChange={() => {
+          props.onTextChange?.(textareaRef.current!.value)
+        }}
         onKeyDown={(e) => {
           if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
             e.preventDefault()

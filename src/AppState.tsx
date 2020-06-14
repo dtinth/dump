@@ -173,6 +173,21 @@ export function useIdea(id: string) {
   return useObserver(() => appState.get().ideas[id])
 }
 
+export function useIdeaTextMap() {
+  return useObserver(() => {
+    const state = appState.get()
+    const output: { [key: string]: string } = {}
+    for (const key of Object.keys(state.ideas)) {
+      output[key] = state.ideas[key].blocks
+        .map((blockId) => {
+          return state.blocks[blockId]?.text
+        })
+        .join('\n\n')
+    }
+    return output
+  })
+}
+
 export function useIdeaTitle(id: string) {
   return useObserver(() => {
     const idea = appState.get().ideas[id]

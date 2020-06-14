@@ -3,7 +3,10 @@ import { BlockEditor } from './BlockEditor'
 import { useHistory } from 'react-router-dom'
 import { useDataStoreContext } from './DataStore'
 
-export function NewIdeaForm(props: { parentIdeaId?: string }) {
+export function NewIdeaForm(props: {
+  parentIdeaId?: string
+  onTextChange?: (text: string) => void
+}) {
   const { saveEvent } = useDataStoreContext()
   const history = useHistory()
   const submit = async (text: string) => {
@@ -15,5 +18,11 @@ export function NewIdeaForm(props: { parentIdeaId?: string }) {
     })
     history.push('/idea/' + id)
   }
-  return <BlockEditor defaultValue="" onSubmit={submit} />
+  return (
+    <BlockEditor
+      defaultValue=""
+      onSubmit={submit}
+      onTextChange={props.onTextChange}
+    />
+  )
 }
