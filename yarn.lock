@@ -4821,10 +4821,10 @@ minipass@^3.0.0, minipass@^3.1.1:
   dependencies:
     yallist "^4.0.0"
 
-minisearch@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-2.3.1.tgz#a25b92fa805b062882affeb69576e9407307bdc5"
-  integrity sha512-ZDKpx909JJQUftm85C5YQX0xMsG7jFRfTWGuFG8w/bvmxyhXZlwnY9nFKlMrXCZ9054Qha1DYW1L7N2WQE4pdQ==
+minisearch@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/minisearch/-/minisearch-2.4.1.tgz#589fdbe27b48f7a679f9c5f5f2bc7ed0f8654f6c"
+  integrity sha512-BlYCccDlrC25KRw6DrFxMOyNgVzl1GbSr+ITrqdodrYcEAVFXMXMrzg/3ZoCcJ0CiZVmnudRWhMXGRygKWUZFA==
 
 mississippi@^3.0.0:
   version "3.0.0"
