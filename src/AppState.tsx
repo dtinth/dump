@@ -9,12 +9,19 @@ export type Idea = {
   ideaId: string
   updatedAt: string
   blocks: string[]
-  parentIdeaIds: string[]
 }
 
-export type Block = {
+export type TextBlock = {
+  type: 'text'
   text: string
 }
+
+export type SubideaBlock = {
+  type: 'subidea'
+  ideaId: string
+}
+
+export type Block = TextBlock | SubideaBlock
 
 type AppState = {
   ideas: { [id: string]: Idea }
@@ -65,16 +72,27 @@ const eventHandler = createEventHandler((builder) =>
         ideaId: ideaId,
         blocks: [ideaId],
         updatedAt: event.time,
-        parentIdeaIds: payload.parentIdeaId ? [payload.parentIdeaId] : [],
       }
       state.blocks[ideaId] = {
+        type: 'text',
         text: payload.text,
+      }
+      if (payload.parentIdeaId) {
+        const parentIdeaId = payload.parentIdeaId
+        const linkBlockId = ideaId + 'L'
+        if (state.ideas[parentIdeaId]) {
+          state.ideas[parentIdeaId].blocks.push(linkBlockId)
+          state.blocks[linkBlockId] = {
+            type: 'subidea',
+            ideaId: ideaId,
+          }
+        }
       }
     })
     .handle('edit block text', (state, event) => {
       const { payload } = event
       const block = state.blocks[payload.blockId]
-      if (block) {
+      if (block && block.type === 'text') {
         block.text = payload.text
       }
       // TODO: a black may move parent, may not have matching id as idea
@@ -157,14 +175,6 @@ export function useRecentIdeas() {
   return useObserver(() =>
     Object.values(appState.get().ideas).sort((a, b) =>
       a.updatedAt < b.updatedAt ? 1 : -1,
-    ),
-  )
-}
-
-export function useLinkedIdeas(parentIdeaId: string) {
-  return useObserver(() =>
-    useRecentIdeas().filter((idea) =>
-      idea.parentIdeaIds.includes(parentIdeaId),
     ),
   )
 }

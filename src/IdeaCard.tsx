@@ -1,12 +1,13 @@
-import { Idea, useBlock } from './AppState'
+import { Idea, useBlock, TextBlock, SubideaBlock, useIdea } from './AppState'
 import ReactMarkdown from 'react-markdown'
 import { useDisclosureState, Disclosure, DisclosureContent } from 'reakit'
-import { useRef, useCallback, useEffect } from 'react'
+import { useRef, useCallback, useEffect, useContext } from 'react'
 import Octicon, { Pencil } from '@primer/octicons-react'
 import { BlockEditor } from './BlockEditor'
 import { Link } from 'react-router-dom'
 import { useDataStoreContext } from './DataStore'
 import React from 'react'
+import { IdeaBlockLink } from './IdeaBlockLink'
 
 export function IdeaCard(props: { idea: Idea }) {
   return (
@@ -27,9 +28,25 @@ export function IdeaCard(props: { idea: Idea }) {
 }
 
 function BlockView(props: { blockId: string }) {
-  const { saveEvent } = useDataStoreContext()
   const id = props.blockId
   const block = useBlock(id)
+  if (!block) {
+    return <div>Block not found {id}</div>
+  }
+  const type = block.type
+  if (block.type === 'text') {
+    return <TextBlockView block={block} blockId={id} />
+  }
+  if (block.type === 'subidea') {
+    return <SubideaBlockView block={block} blockId={id} />
+  }
+  return <div>Unknown block type {type}</div>
+}
+
+function TextBlockView(props: { blockId: string; block: TextBlock }) {
+  const id = props.blockId
+  const { block } = props
+  const { saveEvent } = useDataStoreContext()
   const edit = useDisclosureState()
   const focussing = useRef(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -55,32 +72,55 @@ function BlockView(props: { blockId: string }) {
     <section
       key={id}
       data-block-id={id}
-      className="markdown-body p-3 bg-#252423"
+      className="markdown-body p-3 bg-#252423 mt-px"
     >
-      {block ? (
-        <>
-          <div className="float-right text-#8b8685">
-            <Disclosure {...edit} ref={buttonRef}>
-              <Octicon icon={Pencil} />
-            </Disclosure>
+      <div className="float-right text-#8b8685">
+        <Disclosure {...edit} ref={buttonRef}>
+          <Octicon icon={Pencil} />
+        </Disclosure>
+      </div>
+      <DisclosureContent {...edit}>
+        <BlockEditor
+          defaultValue={block.text}
+          onSubmit={editBlockText}
+          textareaRef={textareaRef}
+        />
+      </DisclosureContent>
+      <ReactMarkdown source={block.text} renderers={{ code: LazyCodeBlock }} />
+    </section>
+  )
+}
+
+const InSubideaContext = React.createContext(false)
+
+function SubideaBlockView(props: { blockId: string; block: SubideaBlock }) {
+  const id = props.blockId
+  const inSubidea = useContext(InSubideaContext)
+  const { block } = props
+  return (
+    <section key={id} data-block-id={id} className="p-3 bg-#353433 mt-px">
+      {inSubidea ? (
+        <div className="flex items-center">
+          <div className="flex-none text-4xl text-#8b8685 mr-3">&raquo;</div>
+          <div className="flex-auto">
+            <IdeaBlockLink ideaId={block.ideaId} />
           </div>
-          <DisclosureContent {...edit}>
-            <BlockEditor
-              defaultValue={block.text}
-              onSubmit={editBlockText}
-              textareaRef={textareaRef}
-            />
-          </DisclosureContent>
-          <ReactMarkdown
-            source={block.text}
-            renderers={{ code: LazyCodeBlock }}
-          />
-        </>
+        </div>
       ) : (
-        `No block found: ${id}`
+        <InSubideaContext.Provider value={true}>
+          <EmbeddedIdea ideaId={block.ideaId} />
+        </InSubideaContext.Provider>
       )}
     </section>
   )
+}
+
+function EmbeddedIdea(props: { ideaId: string }) {
+  const idea = useIdea(props.ideaId)
+  if (!idea) {
+    return <>Not found</>
+  }
+  return <IdeaCard idea={idea} />
 }
 
 const CodeBlock = React.lazy(() =>

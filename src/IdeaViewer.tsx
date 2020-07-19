@@ -1,11 +1,9 @@
 import { IdeaCard } from './IdeaCard'
-import { useIdea, useLinkedIdeas, useBreadcrumb, useIdeaText } from './AppState'
+import { useIdea, useBreadcrumb } from './AppState'
 import { NewIdeaForm } from './NewIdeaForm'
 import { Link } from 'react-router-dom'
 import Octicon, { Home } from '@primer/octicons-react'
 import { IdeaTitle } from './IdeaTitle'
-import { useSearchResults } from './SearchEngine'
-import { IdeaBlockLink } from './IdeaBlockLink'
 
 export function IdeaViewer(props: { ideaId: string }) {
   const idea = useIdea(props.ideaId)
@@ -18,12 +16,11 @@ export function IdeaViewer(props: { ideaId: string }) {
       <div className="mt-4">
         <IdeaCard idea={idea} />
       </div>
-      <h1 className="text-#8b8685 font-bold mt-8">Linked ideas</h1>
+      <h1 className="text-#8b8685 font-bold mt-8">Sub-ideas</h1>
       <NewIdeaForm
         draftId={`IdeaViewer-${props.ideaId}`}
         parentIdeaId={String(props.ideaId)}
       />
-      <LinkedIdeas parentIdeaId={String(props.ideaId)} />
     </>
   )
 }
@@ -51,34 +48,5 @@ function IdeaBreadcrumb(props: { ideaId: string }) {
         )
       })}
     </nav>
-  )
-}
-
-function LinkedIdeas(props: { parentIdeaId: string }) {
-  const ideas = useLinkedIdeas(props.parentIdeaId)
-  const ids = new Set(ideas.map((idea) => idea.ideaId))
-  ids.add(props.parentIdeaId)
-  const related = useSearchResults(useIdeaText(props.parentIdeaId))
-  return (
-    <div>
-      {ideas.map((idea) => {
-        return (
-          <div className="mt-4" key={idea.ideaId}>
-            <IdeaCard idea={idea} />
-          </div>
-        )
-      })}
-      <h1 className="text-#8b8685 font-bold mt-8">Related ideas</h1>
-      {(related || [])
-        .filter((id) => !ids.has(id))
-        .slice(0, 8)
-        .map((id) => {
-          return (
-            <div className="mt-4" key={id}>
-              <IdeaBlockLink ideaId={id} />
-            </div>
-          )
-        })}
-    </div>
   )
 }
