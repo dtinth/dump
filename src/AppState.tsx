@@ -210,6 +210,7 @@ export function useIdeaTitle(id: string) {
     for (const blockId of idea.blocks) {
       const block = appState.get().blocks[blockId]
       if (!block) continue
+      if (block.type !== 'text') continue
       const match = block.text.match(/^\s*(?:#+\s*)?(.+)/)
       if (!match) continue
       return match[1]
@@ -226,26 +227,26 @@ export function useBreadcrumb(id: string) {
   return useObserver(() => {
     type Node = { id: string; depth: number }
     const out: Node[] = []
-    const seen = new Set<string>()
-    const queue = (appState.get().ideas[id]?.parentIdeaIds ?? []).map(
-      (id): Node => ({
-        id,
-        depth: 1,
-      }),
-    )
-    while (queue.length > 0) {
-      const node = queue.shift()!
-      const { id, depth } = node
-      if (seen.has(id)) continue
-      seen.add(id)
-      out.push(node)
-      const parents = appState.get().ideas[id]?.parentIdeaIds ?? []
-      for (const id of parents) {
-        if (seen.has(id)) continue
-        queue.push({ id, depth: depth + 1 })
-      }
-    }
-    console.log(out)
+    // const seen = new Set<string>()
+    // const queue = (appState.get().ideas[id]?.parentIdeaIds ?? []).map(
+    //   (id): Node => ({
+    //     id,
+    //     depth: 1,
+    //   }),
+    // )
+    // while (queue.length > 0) {
+    //   const node = queue.shift()!
+    //   const { id, depth } = node
+    //   if (seen.has(id)) continue
+    //   seen.add(id)
+    //   out.push(node)
+    //   const parents = appState.get().ideas[id]?.parentIdeaIds ?? []
+    //   for (const id of parents) {
+    //     if (seen.has(id)) continue
+    //     queue.push({ id, depth: depth + 1 })
+    //   }
+    // }
+    // console.log(out)
     return out
       .sort((a, b) => (a.id < b.id ? -1 : 1))
       .sort((a, b) => b.depth - a.depth)
