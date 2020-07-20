@@ -7,7 +7,7 @@ import {
   DialogBackdrop,
 } from 'reakit/Dialog'
 import { Result } from '@zxing/library'
-import { saveTextToBuffer } from './BufferStore'
+import { saveTextToBuffer, registerBufferItemReceptor } from './BufferStore'
 
 export function BlockEditor(props: {
   defaultValue: string
@@ -31,6 +31,16 @@ export function BlockEditor(props: {
     textarea.value = ''
     props.onTextChange?.(textarea.value)
   }, [])
+  useEffect(
+    () =>
+      registerBufferItemReceptor({
+        shouldAccept: (b) => b.type === 'text',
+        handle: (b) => {
+          writeText(b.text)
+        },
+      }),
+    [writeText],
+  )
   return (
     <form
       onSubmit={(e) => {

@@ -3,6 +3,13 @@ import { useEffect, useState } from 'react'
 
 const changeListeners = new Set<() => void>()
 
+type BufferItemReceptor = {
+  shouldAccept: (item: BufferItem) => boolean
+  handle: (item: BufferItem) => void
+}
+
+const receptors = new Set<BufferItemReceptor>()
+
 export type BufferItem = {
   id: string
   type: 'text'
@@ -63,4 +70,20 @@ export async function saveTextToBuffer(text: string) {
 export async function removeBufferItem(id: string) {
   const bufferDb = await getBufferDatabase()
   await bufferDb.table('buffers').delete(id)
+}
+
+export async function dispatchBufferItem(item: BufferItem) {
+  for (const receptor of Array.from(receptors).reverse()) {
+    if (receptor.shouldAccept(item)) {
+      receptor.handle(item)
+      return
+    }
+  }
+}
+
+export function registerBufferItemReceptor(receptor: BufferItemReceptor) {
+  receptors.add(receptor)
+  return () => {
+    receptors.delete(receptor)
+  }
 }

@@ -1,4 +1,9 @@
-import { useBuffers, BufferItem, removeBufferItem } from './BufferStore'
+import {
+  useBuffers,
+  BufferItem,
+  removeBufferItem,
+  dispatchBufferItem,
+} from './BufferStore'
 
 export default function BufferBar() {
   const buffers = useBuffers()
@@ -21,12 +26,17 @@ function BufferBarItem(props: { bufferItem: BufferItem }) {
       removeBufferItem(b.id)
     }
   }
+  const onDispatch = () => {
+    dispatchBufferItem(b)
+  }
   return (
-    <div>
-      <button className="text-red-400 mr-3" onClick={onDelete}>
+    <div className="flex">
+      <button className="flex-none text-red-400 mr-3" onClick={onDelete}>
         [x]
       </button>
-      {b.text}
+      <div className="flex-auto" onClick={onDispatch}>
+        {b.text}
+      </div>
     </div>
   )
 }
