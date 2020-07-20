@@ -190,7 +190,9 @@ export function useIdeaTextMap() {
     for (const key of Object.keys(state.ideas)) {
       output[key] = state.ideas[key].blocks
         .map((blockId) => {
-          return state.blocks[blockId]?.text
+          const block = state.blocks[blockId]
+          if (block.type == 'text') return block.text
+          return ''
         })
         .join('\n\n')
     }

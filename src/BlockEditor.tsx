@@ -7,6 +7,7 @@ import {
   DialogBackdrop,
 } from 'reakit/Dialog'
 import { Result } from '@zxing/library'
+import { saveTextToBuffer } from './BufferStore'
 
 export function BlockEditor(props: {
   defaultValue: string
@@ -22,6 +23,13 @@ export function BlockEditor(props: {
     const textarea = textareaRef.current!
     textarea.focus()
     document.execCommand('insertText', false, text)
+  }, [])
+  const saveToBuffer = useCallback(() => {
+    const textarea = textareaRef.current!
+    const text = textarea.value
+    saveTextToBuffer(text)
+    textarea.value = ''
+    props.onTextChange?.(textarea.value)
   }, [])
   return (
     <form
@@ -50,6 +58,13 @@ export function BlockEditor(props: {
           <QRCodeReaderButton onResult={(data) => writeText(`\n${data}\n`)} />
         </p>
         <p className="text-right">
+          <button
+            className="border border-#8b8685 text-#8b8685 py-2 px-4 rounded mr-2"
+            onClick={saveToBuffer}
+            type="button"
+          >
+            Buffer
+          </button>
           <button
             className="border border-#d7fc70 bg-#d7fc70 text-#090807 font-bold py-2 px-4 rounded"
             type="submit"

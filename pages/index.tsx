@@ -7,6 +7,7 @@ import { SettingsPage } from '../src/SettingsPage'
 import { DataStoreContextProvider } from '../src/DataStore'
 import { AppStateProvider } from '../src/AppState'
 import { SearchEngineContextProvider } from '../src/SearchEngine'
+import BufferBar from '../src/BufferBar'
 
 export default function DumpApplication() {
   return (
@@ -19,6 +20,7 @@ export default function DumpApplication() {
           <AppStateProvider>
             <SearchEngineContextProvider>
               <AppRouter />
+              <BufferBar />
             </SearchEngineContextProvider>
           </AppStateProvider>
         </DataStoreContextProvider>
