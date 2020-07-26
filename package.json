@@ -29,6 +29,7 @@
     "pouchdb": "^7.2.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-error-boundary": "^2.3.1",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-syntax-highlighter": "^12.2.1",

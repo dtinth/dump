@@ -1,9 +1,12 @@
 import { IdeaCard } from './IdeaCard'
-import { useIdea, useBreadcrumb } from './AppState'
+import { useIdea, useBreadcrumb, useIdeaText } from './AppState'
 import { NewIdeaForm } from './NewIdeaForm'
 import { Link } from 'react-router-dom'
 import Octicon, { Home } from '@primer/octicons-react'
 import { IdeaTitle } from './IdeaTitle'
+import { AppErrorBoundary } from './AppErrorBoundary'
+import { useSearchResults } from './SearchEngine'
+import { IdeaBlockLink } from './IdeaBlockLink'
 
 export function IdeaViewer(props: { ideaId: string }) {
   const idea = useIdea(props.ideaId)
@@ -12,15 +15,25 @@ export function IdeaViewer(props: { ideaId: string }) {
   }
   return (
     <>
-      <IdeaBreadcrumb ideaId={props.ideaId} />
+      <AppErrorBoundary>
+        <IdeaBreadcrumb ideaId={props.ideaId} />
+      </AppErrorBoundary>
       <div className="mt-4">
-        <IdeaCard idea={idea} />
+        <AppErrorBoundary>
+          <IdeaCard idea={idea} />
+        </AppErrorBoundary>
       </div>
-      <h1 className="text-#8b8685 font-bold mt-8">Sub-ideas</h1>
-      <NewIdeaForm
-        draftId={`IdeaViewer-${props.ideaId}`}
-        parentIdeaId={String(props.ideaId)}
-      />
+      <h1 className="text-#8b8685 font-bold mt-8">Create a sub-idea</h1>
+      <AppErrorBoundary>
+        <NewIdeaForm
+          draftId={`IdeaViewer-${props.ideaId}`}
+          parentIdeaId={String(props.ideaId)}
+        />
+      </AppErrorBoundary>
+      <h1 className="text-#8b8685 font-bold mt-8">Related ideas</h1>
+      <AppErrorBoundary>
+        <RelatedIdeas parentIdeaId={String(props.ideaId)} />
+      </AppErrorBoundary>
     </>
   )
 }
@@ -48,5 +61,23 @@ function IdeaBreadcrumb(props: { ideaId: string }) {
         )
       })}
     </nav>
+  )
+}
+
+function RelatedIdeas(props: { parentIdeaId: string }) {
+  const related = useSearchResults(useIdeaText(props.parentIdeaId))
+  return (
+    <div>
+      {(related || [])
+        .filter((id) => id !== props.parentIdeaId)
+        .slice(0, 8)
+        .map((id) => {
+          return (
+            <div className="mt-4" key={id}>
+              <IdeaBlockLink ideaId={id} />
+            </div>
+          )
+        })}
+    </div>
   )
 }

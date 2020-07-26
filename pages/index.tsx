@@ -8,6 +8,7 @@ import { DataStoreContextProvider } from '../src/DataStore'
 import { AppStateProvider } from '../src/AppState'
 import { SearchEngineContextProvider } from '../src/SearchEngine'
 import BufferBar from '../src/BufferBar'
+import { AppErrorBoundary } from '../src/AppErrorBoundary'
 
 export default function DumpApplication() {
   return (
@@ -19,8 +20,12 @@ export default function DumpApplication() {
         <DataStoreContextProvider>
           <AppStateProvider>
             <SearchEngineContextProvider>
-              <AppRouter />
-              <BufferBar />
+              <AppErrorBoundary>
+                <AppRouter />
+              </AppErrorBoundary>
+              <AppErrorBoundary>
+                <BufferBar />
+              </AppErrorBoundary>
             </SearchEngineContextProvider>
           </AppStateProvider>
         </DataStoreContextProvider>
