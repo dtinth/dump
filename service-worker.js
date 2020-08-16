@@ -4278,12 +4278,6 @@ self.addEventListener('message', event => {
  */
 
 precacheAndRoute([{
-  "url": "_next/static/CfQtYEK8E1ECsxyzhcwc8/_buildManifest.js",
-  "revision": "e364bc7f5e02c85e02d7c3b4ddc78de7"
-}, {
-  "url": "_next/static/CfQtYEK8E1ECsxyzhcwc8/_ssgManifest.js",
-  "revision": "abee47769bf307639ace4945f9cfd4ff"
-}, {
   "url": "_next/static/chunks/16.04056c728929e9622be0.js",
   "revision": "a7f91a413f7287688c002913e590080b"
 }, {
@@ -4364,6 +4358,12 @@ precacheAndRoute([{
 }, {
   "url": "_next/static/media/arimo-latin-700italic.f62b85a0ef70037ab7041eb191b48fe8.woff2",
   "revision": "2e7c6c6f35ee42fbd1264b169410c9bb"
+}, {
+  "url": "_next/static/p9BcWT0dpW5CN7GXGcPgp/_buildManifest.js",
+  "revision": "e364bc7f5e02c85e02d7c3b4ddc78de7"
+}, {
+  "url": "_next/static/p9BcWT0dpW5CN7GXGcPgp/_ssgManifest.js",
+  "revision": "abee47769bf307639ace4945f9cfd4ff"
 }], {});
 registerRoute(/^https?.*/, new NetworkFirst({
   "cacheName": "offlineCache",
