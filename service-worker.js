@@ -4335,6 +4335,12 @@ precacheAndRoute([{
   "url": "_next/static/css/d85deb32d9bc9192a60e.css",
   "revision": "989a85f11cfbf2dde5604208f5008817"
 }, {
+  "url": "_next/static/kizqMC3l-dWIz2PTtj8mn/_buildManifest.js",
+  "revision": "e364bc7f5e02c85e02d7c3b4ddc78de7"
+}, {
+  "url": "_next/static/kizqMC3l-dWIz2PTtj8mn/_ssgManifest.js",
+  "revision": "abee47769bf307639ace4945f9cfd4ff"
+}, {
   "url": "_next/static/media/arimo-latin-400.af75ce5c45f27d62818f61518aa35fca.woff",
   "revision": "6d15a1bb418e9f34d0606fd2d568b429"
 }, {
@@ -4358,12 +4364,6 @@ precacheAndRoute([{
 }, {
   "url": "_next/static/media/arimo-latin-700italic.f62b85a0ef70037ab7041eb191b48fe8.woff2",
   "revision": "2e7c6c6f35ee42fbd1264b169410c9bb"
-}, {
-  "url": "_next/static/p9BcWT0dpW5CN7GXGcPgp/_buildManifest.js",
-  "revision": "e364bc7f5e02c85e02d7c3b4ddc78de7"
-}, {
-  "url": "_next/static/p9BcWT0dpW5CN7GXGcPgp/_ssgManifest.js",
-  "revision": "abee47769bf307639ace4945f9cfd4ff"
 }], {});
 registerRoute(/^https?.*/, new NetworkFirst({
   "cacheName": "offlineCache",
